@@ -7,17 +7,18 @@
 
     <!-- Compiled and minified JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-            
+
     <!--Import Google Icon Font-->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8">
     <title>Price Comparison</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <!-- Dropdown Structure -->
-<!-- <ul id="dropdown1" class="dropdown-content">
+    <!-- <ul id="dropdown1" class="dropdown-content">
     <li><a href="#!">one</a></li>
     <li><a href="#!">two</a></li>
     <li class="divider"></li>
@@ -30,7 +31,7 @@
         <li><a href="sass.html">Sass</a></li>
         <li><a href="badges.html">Components</a></li>
         Dropdown Trigger -->
-        <!-- <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
+    <!-- <li><a class="dropdown-trigger" href="#!" data-target="dropdown1">Dropdown<i class="material-icons right">arrow_drop_down</i></a></li>
       </ul>
     </div>
   </nav> -->
@@ -40,24 +41,34 @@
 
         <nav>
             <div class="nav-wrapper">
-              <form>
-                <div class="input-field">
-                  <input id="search" type="search" required>
-                  <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-                  <i class="material-icons">close</i>
-                </div>
-              </form>
+                <form>
+                    <div class="input-field">
+                        <input id="search" type="search" required>
+                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                        <i class="material-icons">close</i>
+                    </div>
+                </form>
             </div>
-          </nav>
+        </nav>
         <button class="btn waves-effect waves-light" type="submit" name="action">Search
             <i class="material-icons right">send</i>
           </button>
+        <!-- <div class="dropdown">
           <ul id="dropdown2" class="dropdown-content">
             <li><a href="#!">one<span class="badge">1</span></a></li>
             <li><a href="#!">two<span class="new badge">1</span></a></li>
             <li><a href="#!">three</a></li>
           </ul>
           <a class="btn dropdown-trigger" href="#!" data-target="dropdown2">History<i class="material-icons right">arrow_drop_down</i></a>
+        </div> -->
+        <div class="dropdown">
+            <button onclick="myFunction()" class="dropbtn">Dropdown</button>
+            <div id="myDropdown" class="dropdown-content">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
         <!-- <button type="check" (price)></button> -->
         <!-- <div>prepend search history</div> -->
 
@@ -90,12 +101,12 @@
             </div>
           </div> -->
 
-          <div class="collection">
+        <!-- <div class="collection">
             <a href="#!" class="collection-item">Alvin</a>
             <a href="#!" class="collection-item active">Alvin</a>
             <a href="#!" class="collection-item">Alvin</a>
             <a href="#!" class="collection-item">Alvin</a>
-          </div>
+        </div> -->
 
         <!-- <main>
             <div>Target on Left</div> Add a Target Header
