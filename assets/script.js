@@ -7,7 +7,11 @@
 // use localstorage to prepend previous search histories 
 // search history buttons in drop down should do the same as the search onclick button
 
-var historyArray = []
+var amazonProducts = $(this).attr("products-name");
+var amazonQueryURL = "https://target-com-store-product-reviews-locations-data.p.rapidapi.com/location/search?q=" + products + "KMS3dUxPgy1wtcIpmUGBl3UpIJ8iTz0950pFPAWP";
+var targetProducts = $(this).attr("products-name");
+var amazonQueryURL = "https://api.zilerate.com/data/2.5/zilerate?q=" + products + "KMS3dUxPgy1wtcIpmUGBl3UpIJ8iTz0950pFPAWP";
+
 
 function displayHistory() {
     $("#buttons-view").empty();
