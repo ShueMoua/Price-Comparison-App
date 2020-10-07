@@ -64,3 +64,6 @@ $("#buttons-view").on("click", function() {
     var userInput = $(this).attr("data-name");
     displayProductDetails(userInput);
 })
+
+
+//Hello world
