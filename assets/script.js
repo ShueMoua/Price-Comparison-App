@@ -7,9 +7,11 @@
 // use localstorage to prepend previous search histories 
 // search history buttons in drop down should do the same as the search onclick button
 
-var historyArray = []
+//Storing userInput into array and putting into localStorage
+var historyArray = JSON.parse(localStorage.getItem("local")) || [];
 
-function displayHistory() {
+//Adding userInput into the dropdown view
+function submitButton() {
     $("#buttons-view").empty();
 
     for (var i = 0; i < historyArray.length; i++) {
@@ -25,10 +27,43 @@ function displayHistory() {
     }
 }
 
-$("search-button").on("click", function(event) {
-            event.preventDefault();
+submitButton();
 
-            var historyArray = $("search-bar").val().trim();
 
-            history.push(historyArray)
+$("#searchBtn").on("click", function(event) {
+    event.preventDefault();
+    //value gets store in a variable
+    var userInput = $("#search").val().trim();
+
+    // history.push(historyArray);
+
+    displayProductDetails(userInput);
+})
+
+
+//ajax call to retrieve product information
+function displayProductDetails(userInput) {
+    var queryURL = ""
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response) {
+        console.log(response);
+        if (historyArray.indexOf(userInput) === -1) {
+            historyArray.push(userInput);
+            localStorage.setItem("local", JSON.stringify(historyArray));
+            submitButton();
         }
+        //Add product retreiving code here
+    })
+}
+
+//Allows user to click on drop down and retrieve information from previous 
+$("#buttons-view").on("click", function() {
+    var userInput = $(this).attr("data-name");
+    displayProductDetails(userInput);
+})
+
+
+//Hello world
