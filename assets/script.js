@@ -22,11 +22,29 @@ function displayProduct(userInput) {
             newButtons(userInput);
         }
 
+        var imageURL = response.products[0].images[0].base_url + response.products[0].images[0].primary;
+
+        var imageEle = $("<img>").attr("src", imageURL);
+
+        $("#targetContainer").append(imageEle);
+
+        var price = response.products[0].price.formatted_current_price
+
+        var priceEle = $("<p>").text("Price: " + price);
+
+        $("#targetContainer").append(priceEle);
+
+        var rating = response.products[0].average_rating
+
+        var ratingEle = $("<p>").text("Product Rating: " + rating);
+
+        $("#targetContainer").append(ratingEle);
+
         var title = "target.com" + response.products[0].url
 
-        var titleEle = ("<p>").text(title);
+        var titleEle = $("<p>").text("https://" + title);
 
-        $("#targetContainer").appened(titleEle);
+        $("#targetContainer").append(titleEle);
     });
 }
 
