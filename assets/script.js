@@ -9,7 +9,7 @@ function displayProduct(userInput) {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "target-com-store-product-reviews-locations-data.p.rapidapi.com",
-            "x-rapidapi-key": "f99e0469cemsh0ae16a198b31ac0p16360bjsn746b7a844c6a"
+            "x-rapidapi-key": "07886803bfmsh242c167de073b87p14636bjsnce6e2e6994f5"
         }
     };
 
@@ -21,6 +21,12 @@ function displayProduct(userInput) {
             localStorage.setItem("local", JSON.stringify(historyArray));
             newButtons(userInput);
         }
+
+        var name = response.products[0].title
+
+        var nameEle = $("<p>").text(name);
+
+        $("#targetContainer").append(nameEle);
 
         var imageURL = response.products[0].images[0].base_url + response.products[0].images[0].primary;
 
@@ -40,9 +46,13 @@ function displayProduct(userInput) {
 
         $("#targetContainer").append(ratingEle);
 
-        var title = "target.com" + response.products[0].url
+        var title = "https://target.com" + response.products[0].url;
 
-        var titleEle = $("<p>").text("https://" + title);
+        var titleEle = $("<a>");
+
+        titleEle.attr("href", title);
+        
+        titleEle.text("Shop now: " + title);
 
         $("#targetContainer").append(titleEle);
     });
