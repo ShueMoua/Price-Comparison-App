@@ -51,7 +51,7 @@ function displayProduct(userInput) {
         var titleEle = $("<a>");
 
         titleEle.attr("href", title);
-        
+
         titleEle.text("Shop now: " + title);
 
         $("#targetContainer").append(titleEle);
@@ -65,7 +65,7 @@ function newButtons() {
 
     for (var i = 0; i < historyArray.length; i++) {
 
-        var newBtn = $("<li>");
+        var newBtn = $("<button>");
         newBtn.addClass("btn");
         newBtn.attr("data-name", historyArray[i]);
         newBtn.text(historyArray[i]);
@@ -83,8 +83,9 @@ $("#searchBtn").on("click", function(event) {
 })
 
 //onClick function for newBtn list
-$(".dropdown-content").on("click", "btn", function() {
+$("#dropdown1").on("click", ".btn", function() {
     var userInput = $(this).attr("data-name");
+    console.log("Hello World");
     displayProduct(userInput);
 })
 
