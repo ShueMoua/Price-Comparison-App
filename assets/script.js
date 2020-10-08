@@ -56,7 +56,23 @@ function displayProduct(userInput) {
 
         $("#targetContainer").append(titleEle);
     });
+
 }
+
+function displayProduct2(userInput) {
+
+    var queryURL = "https://api.rainforestapi.com/request?api_key=demo&type=product&asin=B000YDDF6O&amazon_domain=amazon.com" + userInput + "&sponsored=1&limit=1&offset=3"
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response2) {
+        console.log(response2);
+        //add code to retrieve elements here
+    })
+};
+
+
 
 //function for creating new buttons
 function newButtons() {
@@ -80,6 +96,7 @@ $("#searchBtn").on("click", function(event) {
     var userInput = $("#searchInput").val().trim();
 
     displayProduct(userInput);
+    displayProduct2(userInput);
 })
 
 //onClick function for newBtn list
@@ -87,6 +104,7 @@ $("#dropdown1").on("click", ".btn", function() {
     var userInput = $(this).attr("data-name");
     console.log("Hello World");
     displayProduct(userInput);
+
 })
 
 //function for drop down 
