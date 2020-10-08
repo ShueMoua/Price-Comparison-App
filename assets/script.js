@@ -1,69 +1,64 @@
-// button functions:
-// onclick search function (Clear previous results)
-// generate product from Target and Walmart API and display on the main divs (display product picture, pricing, and rating)
-// display 3-5 related products based on rating and pricing of what the user selects
-
-// drop down:
-// use localstorage to prepend previous search histories 
-// search history buttons in drop down should do the same as the search onclick button
-
-//Storing userInput into array and putting into localStorage
 var historyArray = JSON.parse(localStorage.getItem("local")) || [];
 
-//Adding userInput into the dropdown view
-function submitButton() {
-    $("#buttons-view").empty();
+//ajax function to pull info and display
+function displayProduct(userInput) {
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://rapidapi.p.rapidapi.com/product/search?store_id=3991&keyword=" + userInput + "&sponsored=1&limit=1&offset=3",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "target-com-store-product-reviews-locations-data.p.rapidapi.com",
+            "x-rapidapi-key": "f99e0469cemsh0ae16a198b31ac0p16360bjsn746b7a844c6a"
+        }
+    };
 
-    for (var i = 0; i < historyArray.length; i++) {
-        //Creating a button for each search history
-        var history = $("<button>");
-        //Adding a class to each button
-        history.addClass("historyBtn");
-        //Adding a data-attribute
-        history.attr("data-name", historyArray[i]);
-        //Providing text to each button
-        history.text(historyArray[i]);
-        $("HistoryDropDownDiv").prepend(history);
-    }
-}
-
-submitButton();
-
-
-$("#searchBtn").on("click", function(event) {
-    event.preventDefault();
-    //value gets store in a variable
-    var userInput = $("#search").val().trim();
-
-    // history.push(historyArray);
-
-    displayProductDetails(userInput);
-})
-
-
-//ajax call to retrieve product information
-function displayProductDetails(userInput) {
-    var queryURL = ""
-
-    $.ajax({
-        url: queryURL,
-        method: "GET"
-    }).then(function(response) {
+    $.ajax(settings).then(function(response) {
         console.log(response);
+        //add code here to pull information
         if (historyArray.indexOf(userInput) === -1) {
             historyArray.push(userInput);
             localStorage.setItem("local", JSON.stringify(historyArray));
-            submitButton();
+            newButtons(userInput);
         }
-        //Add product retreiving code here
-    })
+
+        var title = "target.com" + response.products[0].url
+
+        var titleEle = ("<p>").text(title);
+
+        $("#targetContainer").appened(titleEle);
+    });
 }
 
-//Allows user to click on drop down and retrieve information from previous 
-$("#buttons-view").on("click", function() {
-    var userInput = $(this).attr("data-name");
-    displayProductDetails(userInput);
+//function for creating new buttons
+function newButtons() {
+    //empty the buttons view before adding buttons
+    $(".dropdown-content").empty();
+
+    for (var i = 0; i < historyArray.length; i++) {
+
+        var newBtn = $("<li>");
+        newBtn.addClass("btn");
+        newBtn.attr("data-name", historyArray[i]);
+        newBtn.text(historyArray[i]);
+        $(".dropdown-content").prepend(newBtn);
+    }
+}
+
+//onclick submit search function
+$("#searchBtn").on("click", function(event) {
+    event.preventDefault();
+
+    var userInput = $("#searchInput").val().trim();
+
+    displayProduct(userInput);
 })
 
+//onClick function for newBtn list
+$(".dropdown-content").on("click", "btn", function() {
+    var userInput = $(this).attr("data-name");
+    displayProduct(userInput);
+})
 
-//Hello world
+//function for drop down 
+$('.dropdown-trigger').dropdown();

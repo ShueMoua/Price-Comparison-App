@@ -1,0 +1,25 @@
+#searchInput {
+    border: 1px solid grey;
+    float: left;
+    width: 40%;
+}
+
+#searchBtn {
+    width: 8%;
+    padding: 13px;
+    background: blue;
+    color: white;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+}
+
+#dropbtn {
+    padding-bottom: 4%;
+    font-size: 17px;
+    border: 1px solid grey;
+    border-left: none;
+    cursor: pointer;
+    text-align: center;
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Easy Shopper</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <nav>
+        <div class="nav-wrapper grey darken-1">
+            <a href="#" class="brand-logo center">Easy Shopper</a>
+            <ul id="nav-mobile" class="left hide-on-med-and-down">
+            </ul>
+        </div>
+    </nav>
+    <div class="row">
+        <!-- search section -->
+        <div class="col s8 searchBar">
+            <input type="text" placeholder="Search" id="searchInput">
+            <button type="submit" id="searchBtn"><i class="fa fa-search"></i></button>
+        </div>
+        <!-- Dropdown Trigger -->
+        <a class='dropdown-trigger btn red' href='#' id="dropbtn" data-target='dropdown1'>Recent Searches</a>
+
+        <!-- Dropdown Structure -->
+        <ul id='dropdown1' class='dropdown-content'>
+            <li><a href="#!">one</a></li>
+            <li><a href="#!">two</a></li>
+            <li class="divider" tabindex="-1"></li>
+            <li><a href="#!">three</a></li>
+            <li><a href="#!"><i class="material-icons">view_module</i>four</a></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>five</a></li>
+        </ul>
+
+    </div>
+    <!-- New container for target and (other store) -->
+    <div class="row">
+        <!--Target Container-->
+        <div class="col s6" id="targetContainer">
+            <nav>
+                <div class="nav-wrapper red">
+                    <a href="https://www.target.com/" class="brand-logo center">Target</a>
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <!--(other Store)-->
+        <div class="col s6">
+            <nav>
+                <div class="nav-wrapper blue" id="walmartContainer">
+                    <a href="https://www.walmart.com/" class="brand-logo center">Walmart</a>
+                    <ul id="nav-mobile" class="left hide-on-med-and-down">
+                    </ul>
+                </div>
+            </nav>
+        </div>
+
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script src="assets/script.js"></script>
+</body>
+
+</html>
