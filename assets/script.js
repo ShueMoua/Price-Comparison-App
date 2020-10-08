@@ -9,7 +9,7 @@ function displayProduct(userInput) {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "target-com-store-product-reviews-locations-data.p.rapidapi.com",
-            "x-rapidapi-key": "f99e0469cemsh0ae16a198b31ac0p16360bjsn746b7a844c6a"
+            "x-rapidapi-key": "07886803bfmsh242c167de073b87p14636bjsnce6e2e6994f5"
         }
     };
 
@@ -22,11 +22,11 @@ function displayProduct(userInput) {
             newButtons(userInput);
         }
 
-        var title = "target.com" + response.products[0].url
+        var title = response.products[0].brand
 
-        var titleEle = ("<p>").text(title);
+        var titleEle = $("<p>").html(title);
 
-        $("#targetContainer").appened(titleEle);
+        $("#targetContainer").append(titleEle);
     });
 }
 
@@ -37,7 +37,7 @@ function newButtons() {
 
     for (var i = 0; i < historyArray.length; i++) {
 
-        var newBtn = $("<li>");
+        var newBtn = $("<button>");
         newBtn.addClass("btn");
         newBtn.attr("data-name", historyArray[i]);
         newBtn.text(historyArray[i]);
@@ -55,8 +55,9 @@ $("#searchBtn").on("click", function(event) {
 })
 
 //onClick function for newBtn list
-$(".dropdown-content").on("click", "btn", function() {
+$("#dropdown1").on("click", ".btn", function() {
     var userInput = $(this).attr("data-name");
+    console.log("Hello World");
     displayProduct(userInput);
 })
 

@@ -23,3 +23,7 @@
     cursor: pointer;
     text-align: center;
 }
+
+.dropdown-content {
+    width: 100%;
+}
