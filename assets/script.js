@@ -22,10 +22,6 @@ function displayProduct(userInput) {
             newButtons(userInput);
         }
 
-        var title = response.products[0].brand
-
-        var titleEle = $("<p>").html(title);
-
         var name = response.products[0].title
 
         var nameEle = $("<p>").text(name);
