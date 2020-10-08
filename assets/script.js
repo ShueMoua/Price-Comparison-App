@@ -69,6 +69,33 @@ function displayProduct2(userInput) {
     }).then(function(response2) {
         console.log(response2);
         //add code to retrieve elements here
+        var name2 = response2.bestsellers[0].title;
+
+        var name2Ele = $("<p>").text(name2);
+
+        $("#walmartContainer").append(name2Ele);
+
+        var image2URL = response2.bestsellers[0].image;
+
+        var image2Ele = $("<img>").attr("src", image2URL);
+
+        $("#walmartContainer").append(image2Ele);
+
+        var price2 = response2.bestsellers[0].price.raw
+
+        var price2Ele = $("<p>").text("Price: " + price2);
+
+        $("#walmartContainer").append(price2Ele);
+
+        var title2 = response2.bestsellers[0].link;
+
+        var title2Ele = $("<a>");
+
+        title2Ele.attr("href", title2);
+
+        title2Ele.text("Shop now: " + title2);
+
+        $("#walmartContainer").append(title2Ele);
     })
 };
 
