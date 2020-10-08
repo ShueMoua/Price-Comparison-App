@@ -1,40 +1,64 @@
-// button functions:
-// onclick search function (Clear previous results)
-// generate product from Target and Walmart API and display on the main divs (display product picture, pricing, and rating)
-// display 3-5 related products based on rating and pricing of what the user selects
+var historyArray = JSON.parse(localStorage.getItem("local")) || [];
 
-// drop down:
-// use localstorage to prepend previous search histories 
-// search history buttons in drop down should do the same as the search onclick button
+//ajax function to pull info and display
+function displayProduct(userInput) {
+    const settings = {
+        "async": true,
+        "crossDomain": true,
+        "url": "https://rapidapi.p.rapidapi.com/product/search?store_id=3991&keyword=" + userInput + "&sponsored=1&limit=1&offset=3",
+        "method": "GET",
+        "headers": {
+            "x-rapidapi-host": "target-com-store-product-reviews-locations-data.p.rapidapi.com",
+            "x-rapidapi-key": "f99e0469cemsh0ae16a198b31ac0p16360bjsn746b7a844c6a"
+        }
+    };
 
+    $.ajax(settings).then(function(response) {
+        console.log(response);
+        //add code here to pull information
+        if (historyArray.indexOf(userInput) === -1) {
+            historyArray.push(userInput);
+            localStorage.setItem("local", JSON.stringify(historyArray));
+            newButtons(userInput);
+        }
 
-var historyArray = []
-var targetProducts = $(this).attr("products-name");
-var targetQueryURL = "https://target-com-store-product-reviews-locations-data.p.rapidapi.com/location/search?q=" + products + "07886803bfmsh242c167de073b87p14636bjsnce6e2e6994f5WP";
-var amazonProducts = $(this).attr("products-name");
-var amazonQueryURL = "https://api.zilerate.com/data/2.5/zilerate?q=" + products + "KMS3dUxPgy1wtcIpmUGBl3UpIJ8iTz0950pFPAWP";
+        var title = "target.com" + response.products[0].url
 
+        var titleEle = ("<p>").text(title);
 
-function displayHistory() {
-    $("#buttons-view").empty();
+        $("#targetContainer").appened(titleEle);
+    });
+}
+
+//function for creating new buttons
+function newButtons() {
+    //empty the buttons view before adding buttons
+    $(".dropdown-content").empty();
 
     for (var i = 0; i < historyArray.length; i++) {
-        //Creating a button for each search history
-        var history = $("<button>");
-        //Adding a class to each button
-        history.addClass("historyBtn");
-        //Adding a data-attribute
-        history.attr("data-name", historyArray[i]);
-        //Providing text to each button
-        history.text(historyArray[i]);
-        $("HistoryDropDownDiv").prepend(history);
+
+        var newBtn = $("<li>");
+        newBtn.addClass("btn");
+        newBtn.attr("data-name", historyArray[i]);
+        newBtn.text(historyArray[i]);
+        $(".dropdown-content").prepend(newBtn);
     }
 }
 
-$("search-button").on("click", function(event) {
-            event.preventDefault();
+//onclick submit search function
+$("#searchBtn").on("click", function(event) {
+    event.preventDefault();
 
-            var historyArray = $("search-bar").val().trim();
+    var userInput = $("#searchInput").val().trim();
 
-            history.push(historyArray)
-        }
+    displayProduct(userInput);
+})
+
+//onClick function for newBtn list
+$(".dropdown-content").on("click", "btn", function() {
+    var userInput = $(this).attr("data-name");
+    displayProduct(userInput);
+})
+
+//function for drop down 
+$('.dropdown-trigger').dropdown();
