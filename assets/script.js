@@ -13,53 +13,33 @@ function displayProduct(userInput) {
         }
     };
 
-    function displayProduct2(userInput) {
-        const settings = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://api.zilerate.com/amazon/product?apiKey=KMS3dUxPgy1wtcIpmUGBl3UpIJ8iTz0950pFPAWP",
-            "method": "GET",
-            "headers": {
-
-                "Zilerate": "KMS3dUxPgy1wtcIpmUGBl3UpIJ8iTz0950pFPAWP"
-            }
+    $.ajax(settings).then(function(response) {
+        console.log(response);
+        //add code here to pull information
+        if (historyArray.indexOf(userInput) === -1) {
+            historyArray.push(userInput);
+            localStorage.setItem("local", JSON.stringify(historyArray));
+            newButtons(userInput);
         }
 
-        $.ajax(settings).then(function(response) {
-            console.log(response);
-            //add code here to pull information
-            if (historyArray.indexOf(userInput) === -1) {
-                historyArray.push(userInput);
-                localStorage.setItem("local", JSON.stringify(historyArray));
-                newButtons(userInput);
-            }
-
-            var title2 = "target.com" + response.products[0].url
-
-            var titleEle2 = ("<p>").text(title);
-
-            $("#targetContainer").appened(titleEle);
-        });
-
-        $.ajax(settings).then(function(response) {
-            console.log(response);
-            //add code here to pull information
-            if (historyArray.indexOf(userInput) === -1) {
-                historyArray.push(userInput);
-                localStorage.setItem("local", JSON.stringify(historyArray));
-                newButtons(userInput);
-            }
-
-            var title = "Rakutan.com" + response.products[0].url
-
-            var titleEle = ("<p>").text(title2);
-
-            $("#targetContainer").appened(titleEle2);
-        });
-    }
-
+    });
 
 }
+
+function displayProduct2(userInput) {
+
+    var queryURL = "https://api.rainforestapi.com/request?api_key=demo&type=product&asin=B000YDDF6O&amazon_domain=amazon.com" + userInput + "&sponsored=1&limit=1&offset=3"
+
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+    }).then(function(response2) {
+        console.log(response2);
+        //add code to retrieve elements here
+    })
+};
+
+
 
 //function for creating new buttons
 function newButtons() {
@@ -90,7 +70,6 @@ $("#searchBtn").on("click", function(event) {
 $(".dropdown-content").on("click", "btn", function() {
     var userInput = $(this).attr("data-name");
     displayProduct(userInput);
-    displayProduct2(userInput);
 
 })
 
