@@ -13,21 +13,52 @@ function displayProduct(userInput) {
         }
     };
 
-    $.ajax(settings).then(function(response) {
-        console.log(response);
-        //add code here to pull information
-        if (historyArray.indexOf(userInput) === -1) {
-            historyArray.push(userInput);
-            localStorage.setItem("local", JSON.stringify(historyArray));
-            newButtons(userInput);
+    function displayProduct2(userInput) {
+        const settings = {
+            "async": true,
+            "crossDomain": true,
+            "url": "https://api.zilerate.com/amazon/product?apiKey=KMS3dUxPgy1wtcIpmUGBl3UpIJ8iTz0950pFPAWP",
+            "method": "GET",
+            "headers": {
+
+                "Zilerate": "KMS3dUxPgy1wtcIpmUGBl3UpIJ8iTz0950pFPAWP"
+            }
         }
 
-        var title = "target.com" + response.products[0].url
+        $.ajax(settings).then(function(response) {
+            console.log(response);
+            //add code here to pull information
+            if (historyArray.indexOf(userInput) === -1) {
+                historyArray.push(userInput);
+                localStorage.setItem("local", JSON.stringify(historyArray));
+                newButtons(userInput);
+            }
 
-        var titleEle = ("<p>").text(title);
+            var title2 = "target.com" + response.products[0].url
 
-        $("#targetContainer").appened(titleEle);
-    });
+            var titleEle2 = ("<p>").text(title);
+
+            $("#targetContainer").appened(titleEle);
+        });
+
+        $.ajax(settings).then(function(response) {
+            console.log(response);
+            //add code here to pull information
+            if (historyArray.indexOf(userInput) === -1) {
+                historyArray.push(userInput);
+                localStorage.setItem("local", JSON.stringify(historyArray));
+                newButtons(userInput);
+            }
+
+            var title = "Rakutan.com" + response.products[0].url
+
+            var titleEle = ("<p>").text(title2);
+
+            $("#targetContainer").appened(titleEle2);
+        });
+    }
+
+
 }
 
 //function for creating new buttons
@@ -52,12 +83,15 @@ $("#searchBtn").on("click", function(event) {
     var userInput = $("#searchInput").val().trim();
 
     displayProduct(userInput);
+    displayProduct2(userInput);
 })
 
 //onClick function for newBtn list
 $(".dropdown-content").on("click", "btn", function() {
     var userInput = $(this).attr("data-name");
     displayProduct(userInput);
+    displayProduct2(userInput);
+
 })
 
 //function for drop down 
