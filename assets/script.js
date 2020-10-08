@@ -9,7 +9,7 @@ function displayProduct(userInput) {
         "method": "GET",
         "headers": {
             "x-rapidapi-host": "target-com-store-product-reviews-locations-data.p.rapidapi.com",
-            "x-rapidapi-key": "f99e0469cemsh0ae16a198b31ac0p16360bjsn746b7a844c6a"
+            "x-rapidapi-key": "07886803bfmsh242c167de073b87p14636bjsnce6e2e6994f5"
         }
     };
 
@@ -22,11 +22,39 @@ function displayProduct(userInput) {
             newButtons(userInput);
         }
 
-        var title = "target.com" + response.products[0].url
+        var name = response.products[0].title
 
-        var titleEle = ("<p>").text(title);
+        var nameEle = $("<p>").text(name);
 
-        $("#targetContainer").appened(titleEle);
+        $("#targetContainer").append(nameEle);
+
+        var imageURL = response.products[0].images[0].base_url + response.products[0].images[0].primary;
+
+        var imageEle = $("<img>").attr("src", imageURL);
+
+        $("#targetContainer").append(imageEle);
+
+        var price = response.products[0].price.formatted_current_price
+
+        var priceEle = $("<p>").text("Price: " + price);
+
+        $("#targetContainer").append(priceEle);
+
+        var rating = response.products[0].average_rating
+
+        var ratingEle = $("<p>").text("Product Rating: " + rating);
+
+        $("#targetContainer").append(ratingEle);
+
+        var title = "https://target.com" + response.products[0].url;
+
+        var titleEle = $("<a>");
+
+        titleEle.attr("href", title);
+        
+        titleEle.text("Shop now: " + title);
+
+        $("#targetContainer").append(titleEle);
     });
 }
 
