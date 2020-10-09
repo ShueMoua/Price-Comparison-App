@@ -14,4 +14,4 @@ Links:
 
 [Easy Shopper:](https://shuemoua.github.io/Price-Comparison-App/)
 
-Thanks to Ravi Knutson, Elijah Flanders, and Shuelong Moua for all working hard on this project together
+Thanks to Ravi Knutson, Elijah Flanders, and Shuelong Moua for all working hard on this project together.
