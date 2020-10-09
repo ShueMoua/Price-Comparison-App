@@ -10,12 +10,8 @@ Type in a product that you are interested in in the search bar, and relevant inf
 
 Links:
 
-Repository: <a href="https://github.com/ShueMoua/Price-Comparison-App"></a>
+[Repository:](https://github.com/ShueMoua/Price-Comparison-App)
 
-[Repository:] (https://github.com/ShueMoua/Price-Comparison-App)
-
-Deployed App: <a href="https://shuemoua.github.io/Price-Comparison-App/"></a>
-
-[Easy Shopper:] (https://shuemoua.github.io/Price-Comparison-App/)
+[Easy Shopper:](https://shuemoua.github.io/Price-Comparison-App/)
 
 Thanks to Ravi Knutson, Elijah Flanders, and Shuelong Moua for all working hard on this project together
