@@ -2,7 +2,7 @@ Description:
 
 This app is for anyone who is in the market to purchase an item that they don't know much about. It is designed to pull up highly-rated and relevant products from Target and Amazon to make shopping easier.
 
-<img src="EasyShop.png">
+<img src="pictures/EasyShop.png" alt="easy shopper app">
 
 Usage Instructions:
 
@@ -10,8 +10,12 @@ Type in a product that you are interested in in the search bar, and relevant inf
 
 Links:
 
-Repository: <a href="https://github.com/ShueMoua/Price-Comparison-App">
+Repository: <a href="https://github.com/ShueMoua/Price-Comparison-App"></a>
 
-Deployed App: <a href="https://shuemoua.github.io/Price-Comparison-App/">
+[Repository:] (https://github.com/ShueMoua/Price-Comparison-App)
+
+Deployed App: <a href="https://shuemoua.github.io/Price-Comparison-App/"></a>
+
+[Easy Shopper:] (https://shuemoua.github.io/Price-Comparison-App/)
 
 Thanks to Ravi Knutson, Elijah Flanders, and Shuelong Moua for all working hard on this project together
