@@ -61,9 +61,26 @@ function displayTargetProduct(userInput) {
 
 }
 
-function displayAmazonProduct() {
+function displayAmazonProduct(userInput) {
+    var queryURL = ""
+    switch (userInput) {
+        case "lawn mower":
+            queryURL = "https://api.rainforestapi.com/request?api_key=0660E882F0ED4700BD8EA3A7EF7512FB&type=product&amazon_domain=amazon.com&asin=B0881K29P6";
+            break;
+        case "freezer":
+            queryURL = "https://api.rainforestapi.com/request?api_key=0660E882F0ED4700BD8EA3A7EF7512FB&type=product&amazon_domain=amazon.com&asin=B01N6X34NV";
+            break;
+        case "bissel":
+            queryURL = "https://api.rainforestapi.com/request?api_key=0660E882F0ED4700BD8EA3A7EF7512FB&type=product&amazon_domain=amazon.com&asin=B07L69RL4B";
+            break;
+        case "bicycle":
+            queryURL = "https://api.rainforestapi.com/request?api_key=0660E882F0ED4700BD8EA3A7EF7512FB&type=product&amazon_domain=amazon.com&asin=B08225C7QH";
+            break;
+        default:
+            alert("No available products for Amazon");
+            return 0;
+    }
 
-    var queryURL = "https://api.rainforestapi.com/request?api_key=0660E882F0ED4700BD8EA3A7EF7512FB&type=product&amazon_domain=amazon.com&asin=B0881K29P6";
 
     $.ajax({
         url: queryURL,
@@ -80,6 +97,8 @@ function displayAmazonProduct() {
         var image2URL = response2.product.images[0].link;
 
         var image2Ele = $("<img>").attr("src", image2URL);
+
+        image2Ele.css({ width: "400px" })
 
         $("#amazonContainer").append(image2Ele);
 
@@ -133,7 +152,7 @@ $("#searchBtn").on("click", function(event) {
     var userInput = $("#searchInput").val().trim();
 
     displayTargetProduct(userInput);
-    displayAmazonProduct();
+    displayAmazonProduct(userInput);
 })
 
 //onClick function for newBtn list
@@ -141,7 +160,7 @@ $("#dropdown1").on("click", ".btn", function() {
     var userInput = $(this).attr("data-name");
     console.log("Hello World");
     displayTargetProduct(userInput);
-    displayAmazonProduct();
+    displayAmazonProduct(userInput);
 })
 
 //function for drop down 
