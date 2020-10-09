@@ -1,7 +1,9 @@
 var historyArray = JSON.parse(localStorage.getItem("local")) || [];
 
+
+
 //ajax function to pull info and display
-function displayProduct(userInput) {
+function displayTargetProduct(userInput) {
     const settings = {
         "async": true,
         "crossDomain": true,
@@ -52,16 +54,33 @@ function displayProduct(userInput) {
 
         titleEle.attr("href", title);
 
-        titleEle.text("Shop now: " + title);
+        titleEle.text("Shop Now: " + title);
 
         $("#targetContainer").append(titleEle);
     });
 
 }
 
-function displayProduct2(userInput) {
+function displayAmazonProduct(userInput) {
+    var queryURL = ""
+    switch (userInput) {
+        case "lawn mower":
+            queryURL = "https://api.rainforestapi.com/request?api_key=0660E882F0ED4700BD8EA3A7EF7512FB&type=product&amazon_domain=amazon.com&asin=B0881K29P6";
+            break;
+        case "freezer":
+            queryURL = "https://api.rainforestapi.com/request?api_key=0660E882F0ED4700BD8EA3A7EF7512FB&type=product&amazon_domain=amazon.com&asin=B01N6X34NV";
+            break;
+        case "bissel":
+            queryURL = "https://api.rainforestapi.com/request?api_key=0660E882F0ED4700BD8EA3A7EF7512FB&type=product&amazon_domain=amazon.com&asin=B07L69RL4B";
+            break;
+        case "bicycle":
+            queryURL = "https://api.rainforestapi.com/request?api_key=0660E882F0ED4700BD8EA3A7EF7512FB&type=product&amazon_domain=amazon.com&asin=B08225C7QH";
+            break;
+        default:
+            alert("No available products for Amazon");
+            return 0;
+    }
 
-    var queryURL = "https://api.rainforestapi.com/request?api_key=demo&type=product&asin=B000YDDF6O&amazon_domain=amazon.com" + userInput + "&sponsored=1&limit=1&offset=3"
 
     $.ajax({
         url: queryURL,
@@ -69,33 +88,43 @@ function displayProduct2(userInput) {
     }).then(function(response2) {
         console.log(response2);
         //add code to retrieve elements here
-        var name2 = response2.bestsellers[0].title;
+        var name2 = response2.product.title;
 
         var name2Ele = $("<p>").text(name2);
 
-        $("#walmartContainer").append(name2Ele);
+        $("#amazonContainer").append(name2Ele);
 
-        var image2URL = response2.bestsellers[0].image;
+        var image2URL = response2.product.images[0].link;
 
         var image2Ele = $("<img>").attr("src", image2URL);
 
-        $("#walmartContainer").append(image2Ele);
+        image2Ele.css({ width: "400px" })
 
-        var price2 = response2.bestsellers[0].price.raw
+        $("#amazonContainer").append(image2Ele);
 
-        var price2Ele = $("<p>").text("Price: " + price2);
+        // var price2 = response2.bestsellers[0].price.raw
 
-        $("#walmartContainer").append(price2Ele);
+        // var price2Ele = $("<p>").text("Price: " + price2);
 
-        var title2 = response2.bestsellers[0].link;
+        // $("#amazonContainer").append(price2Ele);
 
-        var title2Ele = $("<a>");
+        var rating2 = response2.product.bestsellers_rank[1].rank;
 
-        title2Ele.attr("href", title2);
+        var rating2Ele = $("<p>").text(rating2);
 
-        title2Ele.text("Shop now: " + title2);
+        rating2Ele.text("Product Rating: " + rating2 + " Bestseller");
 
-        $("#walmartContainer").append(title2Ele);
+        $("#amazonContainer").append(rating2Ele);
+
+        var shopURL = response2.product.link;
+
+        var shopURLele = $("<a>");
+
+        shopURLele.attr("href", shopURL)
+
+        shopURLele.text("Shop Now: " + shopURL);
+
+        $("#amazonContainer").append(shopURLele)
     })
 };
 
@@ -122,16 +151,16 @@ $("#searchBtn").on("click", function(event) {
 
     var userInput = $("#searchInput").val().trim();
 
-    displayProduct(userInput);
-    displayProduct2(userInput);
+    displayTargetProduct(userInput);
+    displayAmazonProduct(userInput);
 })
 
 //onClick function for newBtn list
 $("#dropdown1").on("click", ".btn", function() {
     var userInput = $(this).attr("data-name");
     console.log("Hello World");
-    displayProduct(userInput);
-
+    displayTargetProduct(userInput);
+    displayAmazonProduct(userInput);
 })
 
 //function for drop down 
